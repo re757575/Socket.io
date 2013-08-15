@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Nodejs -  手機網頁</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="author" content="patw, Patrick Wang" />
+        <script src="/javascripts/jquery-1.8.3.min.js"></script>
+        <script src="/socket.io/socket.io.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+ 
+        // ==========================================================================================================================
+        // 建立 Socket IO 連線
+        // ==========================================================================================================================
+        var socket = io.connect("http://localhost");
+        "undefined" != typeof console && console.log("user enter via mobile");
+        // ==========================================================================================================================
+ 
+        "undefined" != typeof console && console.log("enter mobile page");
+        socket.emit("send", {
+            key: GetURLParameter("key"),
+            act: "enter"
+        });
+ 
+        $("#change_btn").click(function(){
+            "undefined" != typeof console && console.log("send change color command");
+            socket.emit("send", {
+                key: GetURLParameter("key"),
+                act: "changebg"
+            });
+        });
+ 
+
+        $( "#right" ).click(function() {
+            socket.emit("send", {
+                key: GetURLParameter("key"),
+                act: "move_Right"
+            });          
+        });
+         
+        $( "#left" ).click(function(){
+            socket.emit("send", {
+                key: GetURLParameter("key"),
+                act: "move_Left"
+            });          
+        });
+
+
+        $( "#up" ).click(function() {
+            socket.emit("send", {
+                key: GetURLParameter("key"),
+                act: "move_Up"
+            });          
+        });
+         
+        $( "#down" ).click(function(){
+            socket.emit("send", {
+                key: GetURLParameter("key"),
+                act: "move_Down"
+            });          
+        });        
+
+		
+        $( "#rotate_r" ).click(function(){
+            socket.emit("send", {
+                key: GetURLParameter("key"),
+                act: "rotate_r"
+            });          
+        });
+
+        $( "#rotate_l" ).click(function(){
+            socket.emit("send", {
+                key: GetURLParameter("key"),
+                act: "rotate_l"
+            });          
+        });        
+
+        $( "#auto" ).click(function(){
+            socket.emit("send", {
+                key: GetURLParameter("key"),
+                act: "auto"
+            });          
+        });        
+
+        $( "#stop" ).click(function(){
+            socket.emit("send", {
+                key: GetURLParameter("key"),
+                act: "stop"
+            });          
+        }); 
+		function GetURLParameter(sParam)
+		{
+			var sPageURL = window.location.search.substring(1);
+			var sURLVariables = sPageURL.split('&');
+			for (var i = 0; i < sURLVariables.length; i++) 
+			{
+				var sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] == sParam) 
+				{
+				    return sParameterName[1];
+				}
+			}
+		}
+		
+		console.log(window.location.search); //?aaa=77&bb=88 
+		console.log(window.location.search.substring(1)); //aaa=77&bb=88 
+		console.log(window.location.search.substring(1).split('&')); // ["aaa=77", "bb=88"] 
+		console.log(window.location.search.substring(1).split('&').length) // 2
+		console.log(window.location.search.substring(1).split('&')[0].split('=')) //["aaa", "77"] 
+
+
+		console.log("key="+GetURLParameter("key"));
+    });
+    </script>
+</head>
+<body>
+ 
+<p>打開手機網頁成功！快看看你的電腦螢幕吧！</p>
+ 
+<input id="change_btn" type="button" value="控制電腦端變背景色" />
+<h3>控制電腦端方塊移動</h3>
+<button id="left">&laquo;</button>
+<button id="right">&raquo;</button>
+<button id="up">&#8679;</button>
+<button id="down">&#8681;</button>
+<button id="rotate_r">&#8635;</button>
+<button id="rotate_l">&#8634;</button>
+<button id="auto">&#9733;</button>
+<button id="stop">&#9762;</button>
+</body>
+</html>
