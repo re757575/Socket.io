@@ -83,15 +83,15 @@
                 var key = NewGuid();
                 console.log(key);
 
-			   $("#qrcode").append("<img src='http://qrfree.kaywa.com/?l=1&s=8&d=localhost/?key="+key+"'/>");
+			   $("#qrcode").append("<img src='http://qrfree.kaywa.com/?l=1&s=8&d="+window.location.href+"/2?key="+key+"'/>");
  
 				
  
                 // NodeJS Server
-                var nodejs_server = "http://localhost";
+                //var nodejs_server = "http://localhost";
  
                 // 進行 connect
-                var socket = io.connect(nodejs_server);
+                var socket = io.connect();
  
                 // 偵聽 nodejs 事件
                 socket.on("get_response", function (b) {
