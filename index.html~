@@ -88,10 +88,10 @@
 				
  
                 // NodeJS Server
-                var nodejs_server = "http://localhost";
+                var nodejs_server = window.location.href;
  
                 // 進行 connect
-                var socket = io.connect();
+                var socket = io.connect(nodejs_server);
  
                 // 偵聽 nodejs 事件
                 socket.on("get_response", function (b) {
