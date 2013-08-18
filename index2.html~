@@ -14,7 +14,12 @@
         // ==========================================================================================================================
         // 建立 Socket IO 連線
         // ==========================================================================================================================
-        var socket = io.connect(window.location.href);
+                // NodeJS Server
+        var nodejs_server = window.location.href;
+		var address = nodejs_server.split(':');
+ 	    address = address[0]+address[1];
+
+		var socket = io.connect(address);
         "undefined" != typeof console && console.log("user enter via mobile");
         // ==========================================================================================================================
  
