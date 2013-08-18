@@ -7,7 +7,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , io = require('socket.io')
-  
+  , colors = require('colors')
 
 
 var app = express();
@@ -33,10 +33,17 @@ app.get('/users', user.list);
 */
 
 
+colors.setTheme({
+	 info: 'green',
+	 debug: 'blue',
+	 error: 'red'
+
+});
 
 
 var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+	var msg = 'Express server start on http://localhost:' + app.get('port');
+  console.log(msg.info);
 });
 
  io = io.listen(server);
@@ -64,54 +71,54 @@ io.sockets.on('connection', function (socket) {
             // 這個是使用者打開手機網頁後發生的事件
             case "enter":
             io.sockets.emit('get_response', data);
-            console.log("Sending getEnter");
+            console.log("Sending getEnter".debug);
             break;
  
             // 這個是使用者在手機網頁中點擊按鈕，讓電腦網頁背景變色的事件
             case "changebg":
             io.sockets.emit('get_response', data);
-            console.log("Sending changeBg");
+            console.log("Sending changeBg".debug);
             break;
 
             case "move_Right":
             io.sockets.emit('get_response', data);
-            console.log("Sending move_Right");
+            console.log("Sending move_Right".debug);
             break;
 
             case "move_Left":
             io.sockets.emit('get_response', data);
-            console.log("Sending move_Left");
+            console.log("Sending move_Left".debug);
             break;
 
             case "move_Up":
             io.sockets.emit('get_response', data);
-            console.log("Sending move_Up");
+            console.log("Sending move_Up".debug);
             break;
 
             case "move_Down":
             io.sockets.emit('get_response', data);
-            console.log("Sending move_Down");
+            console.log("Sending move_Down".debug);
             break;            
 
             case "rotate_r":
             io.sockets.emit('get_response', data);
-            console.log("Sending rotate_r");
+            console.log("Sending rotate_r".debug);
             break;               
 
             case "rotate_l":
             io.sockets.emit('get_response', data);
-            console.log("Sending rotate_l");
+            console.log("Sending rotate_l".debug);
             break;         
 
 
             case "auto":
             io.sockets.emit('get_response', data);
-            console.log("Sending auto");
+            console.log("Sending auto".debug);
             break;  
 
             case "stop":
             io.sockets.emit('get_response', data);
-            console.log("Sending stop");
+            console.log("Sending stop".debug);
             break;              
         }
  

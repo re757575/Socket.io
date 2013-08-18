@@ -8,10 +8,7 @@
   "dependencies": {
     "express": "3.3.4",
     "jade": "*",
-	"socket.io": "0.9.16"  
-	},
-  "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
-  }	
+	"socket.io": "latest",
+	"colors": "latest"
+  }
 }
